@@ -1,7 +1,16 @@
+"use client"
 import Image from "next/image";
 import { Phone } from "lucide-react";
+import { Menu } from "lucide-react";
+import { useState } from "react";
+
 
 export default function Section1() {
+ const [menu, setMenu] = useState(false)
+  const handleClick = () => {
+    setMenu(!menu)
+  } 
+  
   return (
     <div>
       <div className="p-1 shadow-sm rounded-[20px] mb-6 bg-[#ff466808]">
@@ -20,10 +29,32 @@ export default function Section1() {
             <a href="">გალერეა</a>
           </div>
           <div className="flex gap-4">
-            <button className="p-3 text-lg rounded-full font-extrabold text-white bg-[#FF4668] hover:bg-[#de3554] transition duration-300">
+            <button 
+            className="md:hidden"
+            onClick={handleClick}
+            >
+              {menu && (
+        <div className="dropdown-menu  text-4xl flex flex-col gap-24 h-full w-full absolute top-14 right-0 bg-[#FFF5F0] p-12 rounded-lg shadow-lg">
+          <p>ჩვენს შესახებ</p>
+          <p>დონერები</p>
+          <p>პუბლიკაციები</p>
+          <p>სიახლეები</p>
+          <p>გალერეა</p>
+        </div>
+      )}
+              <Menu className="text-[#FF4668]">
+              </Menu>
+            </button>
+            <button className=" hidden md:block p-3 text-lg rounded-full font-extrabold text-white bg-[#FF4668] hover:bg-[#de3554] transition duration-300">
               დონაცია
             </button>
-            <Image src="/georgia.png" alt="Logo" width={51} height={45} />
+            <Image 
+            src="/georgia.png" 
+            alt="Logo" 
+            width={51} 
+            height={45} 
+            className="hidden md:block"
+            />
           </div>
         </header>
       </div>
